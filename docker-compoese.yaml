@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  database:
+    image: mysql:5.7
+    container_name: database
+    environment:
+      MYSQL_ROOT_PASSWORD: P12345p
+      MYSQL_USER: clarusway
+      MYSQL_PASSWORD: Clarusway_1
+      MYSQL_DATABASE: bookstore_db
+    networks:
+      - clarusnet
+  myapp:
+    image: test
+    container_name: myapp
+    ports:
+      - "80:80"
+    depends_on:
+      - database
+    networks:
+      - clarusnet
+networks:
+  clarusnet:
